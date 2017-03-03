@@ -1,0 +1,103 @@
+.container {
+  margin: 40px auto;
+}
+
+p {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: fantasy;
+}
+
+.boxContainer {
+  height: 190px;
+  margin: 85px;
+}
+
+.colorBox1 {
+  width: 100px;
+  height: 80px;
+  background: red;
+  border: 1px solid lightgrey;
+  float: left;
+  margin: 30px;
+  color: white;
+  padding-top: 50px;
+  text-align: center;
+  border-radius: 3em;
+  opacity: 0.3;
+}
+
+.colorBox1:hover {
+  opacity: 4
+}
+
+
+.colorBox2 {
+  width: 100px;
+  height: 80px;
+  background: black;
+  border: 1px solid lightgrey;
+  float: left;
+  margin: 30px;
+  color: white;
+  padding-top: 50px;
+  text-align: center;
+  border-radius: 3em;
+  opacity: 0.3;
+}
+
+.colorBox2:hover {
+  opacity: 4;
+}
+.colorBox3 {
+  width: 100px;
+  height: 80px;
+  background: green;
+  border: 1px solid lightgrey;
+  float: left;
+  margin: 30px;
+  color: white;
+  padding-top: 50px;
+  text-align: center;
+  border-radius: 3em;
+  opacity: 0.3;
+}
+
+.colorBox3:hover {
+  opacity: 4;
+}
+.colorBox4 {
+  width: 100px;
+  height: 80px;
+  background: yellow;
+  border: 1px solid lightgrey;
+  float: left;
+  margin: 30px;
+  color: grey;
+  padding-top: 50px;
+  text-align: center;
+  border-radius: 3em;
+  opacity: 0.3;
+}
+
+.colorBox4:hover {
+  opacity: 4;
+}
+.colorBox5 {
+  width: 100px;
+  height: 80px;
+  background: blue;
+  border: 1px solid lightgrey;
+  float: left;
+  margin: 30px;
+  color: white;
+  padding-top: 50px;
+  text-align: center;
+  border-radius: 3em;
+  opacity: 0.3;
+}
+
+.colorBox5:hover {
+  opacity: 4;
+}
