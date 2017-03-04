@@ -11,10 +11,10 @@ p {
 
 .boxContainer {
   height: 190px;
-  margin: 85px;
+  margin: 50px 85px;
 }
 
-.colorBox1 {
+#colorBox1 {
   width: 100px;
   height: 80px;
   background: red;
@@ -25,7 +25,7 @@ p {
   padding-top: 50px;
   text-align: center;
   border-radius: 3em;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .colorBox1:hover {
@@ -33,7 +33,7 @@ p {
 }
 
 
-.colorBox2 {
+#colorBox2 {
   width: 100px;
   height: 80px;
   background: black;
@@ -44,13 +44,13 @@ p {
   padding-top: 50px;
   text-align: center;
   border-radius: 3em;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .colorBox2:hover {
   opacity: 4;
 }
-.colorBox3 {
+#colorBox3 {
   width: 100px;
   height: 80px;
   background: green;
@@ -61,13 +61,13 @@ p {
   padding-top: 50px;
   text-align: center;
   border-radius: 3em;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .colorBox3:hover {
   opacity: 4;
 }
-.colorBox4 {
+#colorBox4 {
   width: 100px;
   height: 80px;
   background: yellow;
@@ -78,13 +78,13 @@ p {
   padding-top: 50px;
   text-align: center;
   border-radius: 3em;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .colorBox4:hover {
   opacity: 4;
 }
-.colorBox5 {
+#colorBox5 {
   width: 100px;
   height: 80px;
   background: blue;
@@ -95,9 +95,36 @@ p {
   padding-top: 50px;
   text-align: center;
   border-radius: 3em;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
-.colorBox5:hover {
+colorBox5:hover {
   opacity: 4;
+}
+
+.startButton {
+  width: 100px;
+  height: 30px;
+  border: 1px lightgrey solid;
+  color: white;
+  background: green;
+  font-size: 20px;
+  margin: 30px auto;
+  text-align: center;
+  border-radius: 3em;
+  padding-top: 10px;
+}
+
+.instructions {
+
+  height: 45px;
+  width: 410px;
+  border: 1px lightgrey solid;
+  color: black;
+  background: lightgrey;
+  font-size: 18px;
+  margin: 20px auto;
+  text-align: left;
+  border-radius: 1em;
+  padding: 5px 20px 20px 20px;
 }

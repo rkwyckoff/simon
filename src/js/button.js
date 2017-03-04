@@ -1,19 +1,38 @@
+import $ from "jquery";
+// class Student {
+//   constructor (name, course) {
+//     this.name = name;
+//     this.course = course;
+//   }
+// }
+//
+// //var kurt = new Student("Kurt", "Frontend");
+// var kurt = new Student({
+//   name: "Kurt",
+//   course: "Frontend"
+// })
+
 class Button {
   constructor (options) {
     options = options || {};
     this.id = options.id;
-    // this.color = options.color;
-  // ??    this.completed = options.completed;
+    this.selector = "#colorBox" + options.id;
+    this.color = options.color;
+
   }
 
-  brightenColor () {
-    // grab the element for this Button
-     // $(this.id).changeTheOpacity
-    // make it get brighten
-    // set a timeout to make it go back to nornal in a half second
-  }
+   brightenColor () {
+     var element = $(this.selector);
+     element.css("opacity", 4);
+   }
 
+   dimColor () {
+
+   }
 }
+
+
+
 
 /*
 
