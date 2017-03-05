@@ -27,7 +27,8 @@ class Button {
    }
 
    dimColor () {
-
+     var element = $(this.selector);
+     element.css("opacity", .2);
    }
 }
 

@@ -7,11 +7,12 @@ p {
   font-size: 50px;
   font-weight: bold;
   font-family: fantasy;
+  margin: 20px auto;
 }
 
 .boxContainer {
   height: 190px;
-  margin: 50px 85px;
+  margin: 30px 85px;
 }
 
 #colorBox1 {
@@ -115,6 +116,18 @@ colorBox5:hover {
   padding-top: 10px;
 }
 
+#time {
+  width: 100px;
+  height: 30px;
+  border: 1px lightgrey solid;
+  color: white;
+  background: red;
+  font-size: 20px;
+  margin: 30px auto;
+  text-align: center;
+  border-radius: 3em;
+  padding-top: 10px;
+}
 .instructions {
 
   height: 45px;

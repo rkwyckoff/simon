@@ -3,7 +3,7 @@ class Pattern {
     options = options || {};
     this.id = options.id;
     this.playerClicks = [];
-    this.buildSteps(5);
+    this.buildSteps(3);
   }
 
   buildSteps (length) {
@@ -16,10 +16,16 @@ class Pattern {
         return Math.floor(Math.random() * (max - min)) + min;
       }
       this.steps.push(num(1, 6))
+
     }
-     //console.log(this.steps);
+     console.log(this.steps);
   }
+
 }
+
+
+
+
 //var pattern1 = new Pattern();
 // console.log(pattern1.makePattern(3));
 // console.log(pattern1.steps);
