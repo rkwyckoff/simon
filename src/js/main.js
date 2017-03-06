@@ -1,77 +1,129 @@
+/* eslint-disable quotes, no-console */
+
 import $ from "jquery";
 import { Pattern } from "./pattern";
-import { Button } from "./button"
+import { Button } from "./button";
 
-var difficulty = {
-  easy: 500,
-  medium: 400,
-  hard: 300,
-  nightmare: 200
-}
+// var difficulty = {
+//   easy: 500,
+//   medium: 400,
+//   hard: 300,
+//   nightmare: 200
+// }
 
-//var playerSteps = new Pattern({});
-
+// Create a new pattern
 var pattern = new Pattern();
-//console.log(pattern);
- var redButton = new Button({ color: "red", id: 1 });
- var blackButton = new Button({ color: "black", id: 2 });
- var greenButton = new Button({ color: "green", id: 3 });
- var yellowButton = new Button({ color: "yellow", id: 4 });
- var blueButton = new Button({ color: "blue", id: 5 });
+var currentRound = pattern.steps;
+console.log(currentRound);
 
- var buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
-// redButton.brightenColor();
- $('.startButton').click(function() {
-  // event.preventDefault();
-  for (var i = 0; i < pattern.steps.length; i++) {
-    //console
-    var nextStep = pattern.steps[i];
-     //console.log(pattern.steps[i])
-      var button = buttons.find(function (element) {
-        return element.id === nextStep;
+// Create 5 buttons
+var redButton = new Button({ color: "red", id: 1 });
+var blackButton = new Button({ color: "black", id: 2 });
+var greenButton = new Button({ color: "green", id: 3 });
+var yellowButton = new Button({ color: "yellow", id: 4 });
+var blueButton = new Button({ color: "blue", id: 5 });
+
+// Create buttons array
+var buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
+
+// Starts the game
+$('.startButton').click(function() {
+
+  // loop through each pattern step ====> 3 for now
+  for (var i = 0; i < currentRound.length; i++) {
+
+    // set the current step
+    var currentStep = currentRound[i];
+
+    // Find the button that matches this current step
+    var button = buttons.find(function (button) {
+      return button.id === currentStep;
     });
 
+    // brighten the current button's color
     setTimeout(function (button) {
       button.brightenColor();
     }, i * 400, button);
 
+    // dim the current button's color
     setTimeout(function (button) {
-    button.dimColor();
-  }, 1500, button);
-
+      button.dimColor();
+    }, 1500, button);
   }
-  var display = $("#time")
-  var counter = 6;
-  var interval = setInterval(function() {
-      counter--;
-      display.empty();
-      display.html(counter);
-      if (counter == 0) {
-          // Display a login box
-          clearInterval(interval);
-      }
-  }, 1000);
+
+  startPlayerTurn();
+
 
 });
 
-// $(".colorBox").click(function (event) {
-//   //  var count = 0;
-//
-//       if (event.target[count] === pattern.steps[count]) {
-//         console.log(event.target[count])
-//         return true;
-//
-//       }   else {
-//          gameOver()
-//           }
+function startPlayerTurn() {
+  // start the timer
+  startTimer();
+
+  var clickNumber = 0;
+  var correctClicks = [];
+  var correctLength = pattern.steps.length;
+
+  // listen for player color box clicks
+  $( ".colorBox" ).click(function(event) {
+
+    var idLength = event.target.id.length;
+    var id = parseInt(event.target.id.charAt(idLength - 1));
+
+    if (id !== pattern.steps[clickNumber]) {
+      alert(gameOver('faultyButton'));
+    }  else {
+      clickNumber++;
+      correctClicks.push(id);
+
+      if (correctLength === correctClicks.length &&
+          pattern.steps[correctLength - 1] === id) {
+        alert("You Win");
+      }
+
+    }
+  });
+}
+
+function startTimer() {
+  var display = $("#time");
+  var counter = 6;
+  var interval = setInterval(function() {
+    counter--;
+    display.empty();
+    display.html(counter);
+    if (counter == 0) {
+      alert(gameOver('outOfTime'));
+      clearInterval(interval);
+    }
+  }, 1000);
+}
+
+
+
+
+// function (event) {
+//     //var count = 0;
+// console.log(event.target)
 // }
-// function gameOver () {
-//   return `
-//           GAME OVER....YOU LOSE!
-//           Click "Start" to play again
-//     `
-//       $('.instructions').html()
+//       if (event.target !== pattern.steps[0]) {
+//         console.log("game over")
+//       }
 // }
+function gameOver (type) {
+  if (type === "outOfTime") {
+    return `
+      GAME OVER.... OUT OF TIME!
+      Click "Start" to play again
+    `;
+  }
+  if (type === "faultyButton") {
+    return `
+      GAME OVER.... WRONG BUTTON SEQUENCE!
+      Click "Start" to play again
+    `;
+  }
+}
   //  if (event.target.id === )
   //  alert(event.target.id);
   // check the id of the event.target

@@ -1,3 +1,5 @@
+/* eslint-disable quotes, no-console */
+
 import $ from "jquery";
 // class Student {
 //   constructor (name, course) {
@@ -21,15 +23,15 @@ class Button {
 
   }
 
-   brightenColor () {
-     var element = $(this.selector);
-     element.css("opacity", 4);
-   }
+  brightenColor () {
+    var element = $(this.selector);
+    element.css("opacity", 4);
+  }
 
-   dimColor () {
-     var element = $(this.selector);
-     element.css("opacity", .2);
-   }
+  dimColor () {
+    var element = $(this.selector);
+    element.css("opacity", .2);
+  }
 }
 
 
@@ -46,4 +48,4 @@ to guesses
 
 */
 
-export { Button }
+export { Button };
