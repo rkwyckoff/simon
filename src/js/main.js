@@ -13,8 +13,9 @@ import { Button } from "./button";
 
 // Create a new pattern
 var pattern = new Pattern();
+var pattern2 = new Pattern();
 var currentRound = pattern.steps;
-console.log(currentRound);
+//console.log(currentRound);
 
 // Create 5 buttons
 var redButton = new Button({ color: "red", id: 1 });
@@ -26,16 +27,17 @@ var blueButton = new Button({ color: "blue", id: 5 });
 // Create buttons array
 var buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
 
+
 // Starts the game
-$('.startButton').click(function() {
+  $('.startButton').click(function() {
 
   // loop through each pattern step ====> 3 for now
-  for (var i = 0; i < currentRound.length; i++) {
+    for (var i = 0; i < currentRound.length; i++) {
 
     // set the current step
-    var currentStep = currentRound[i];
+      var currentStep = currentRound[i];
 
-    // Find the button that matches this current step
+      // Find the button that matches this current step
     var button = buttons.find(function (button) {
       return button.id === currentStep;
     });
@@ -50,11 +52,9 @@ $('.startButton').click(function() {
       button.dimColor();
     }, 1500, button);
   }
-
   startPlayerTurn();
+  });
 
-
-});
 
 function startPlayerTurn() {
   // start the timer
@@ -63,6 +63,7 @@ function startPlayerTurn() {
   var clickNumber = 0;
   var correctClicks = [];
   var correctLength = pattern.steps.length;
+  console.log(pattern.steps)
 
   // listen for player color box clicks
   $( ".colorBox" ).click(function(event) {
@@ -71,16 +72,23 @@ function startPlayerTurn() {
     var id = parseInt(event.target.id.charAt(idLength - 1));
 
     if (id !== pattern.steps[clickNumber]) {
-      alert(gameOver('faultyButton'));
+    //  gameOver();
+      alert('Game Over: faultyButton');
+      window.location.reload();
+
+
     }  else {
       clickNumber++;
       correctClicks.push(id);
 
       if (correctLength === correctClicks.length &&
           pattern.steps[correctLength - 1] === id) {
-        alert("You Win");
-      }
+      //  gameOver();
+        alert("You Win!");
+        window.location.reload();
 
+        
+      }
     }
   });
 }
@@ -90,11 +98,13 @@ function startTimer() {
   var counter = 6;
   var interval = setInterval(function() {
     counter--;
-    display.empty();
+    //display.empty();
     display.html(counter);
-    if (counter == 0) {
+    if (counter === 0) {
       alert(gameOver('outOfTime'));
-      clearInterval(interval);
+      //clearInterval(interval);
+      window.location.reload();
+
     }
   }, 1000);
 }
@@ -111,6 +121,9 @@ function startTimer() {
 //       }
 // }
 function gameOver (type) {
+  //var display = $("#time");
+  //display.instructions();
+
   if (type === "outOfTime") {
     return `
       GAME OVER.... OUT OF TIME!

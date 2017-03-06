@@ -4,6 +4,7 @@ class Pattern {
     this.id = options.id;
     this.playerClicks = [];
     this.buildSteps(3);
+    //this.buildSteps(4);
   }
 
   buildSteps (length) {
