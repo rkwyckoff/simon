@@ -13,7 +13,7 @@ import { Button } from "./button";
 
 // Create a new pattern
 var pattern = new Pattern();
-var pattern2 = new Pattern();
+//var pattern2 = new Pattern();
 var currentRound = pattern.steps;
 //console.log(currentRound);
 
@@ -67,20 +67,17 @@ function startPlayerTurn() {
   console.log(pattern.steps)
 
   // listen for player color box clicks
-  // $(".colorBox").click() {
-  //
-  //   console.log(event.target.id);
-  //   this.css("opacity", 4);
 
-    startPlayerTurn();
-  //});
+   $(".colorBox").click(function (event){
+
     var idLength = event.target.id.length;
     var id = parseInt(event.target.id.charAt(idLength - 1));
-    $(".colorBox").click(
-      event.target).css("opacity", 4);
+
+
+    //  event.target).css("opacity", 4);
 
     if (id !== pattern.steps[clickNumber]) {
-    //  gameOver();
+      gameOver();
       alert('Game Over: faultyButton');
       window.location.reload();
 
@@ -95,11 +92,11 @@ function startPlayerTurn() {
         alert("You Win!");
         window.location.reload();
 
-        pattern.buildSteps(4);
+      //  pattern.buildSteps(4);
       }
     }
-  };
-
+});
+}
 
 function startTimer() {
   var display = $("#time");
@@ -110,7 +107,7 @@ function startTimer() {
     display.html(counter);
     if (counter === 0) {
       alert(gameOver('outOfTime'));
-      //clearInterval(interval);
+      clearInterval(interval);
       window.location.reload();
 
     }
