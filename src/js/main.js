@@ -72,7 +72,18 @@ function startPlayerTurn() {
 
     var idLength = event.target.id.length;
     var id = parseInt(event.target.id.charAt(idLength - 1));
+    var button2 = new Button (event)
+    if (event) {
+      setTimeout(function () {
+      button2.brightenColor2(event)
+      });
 
+    }
+      // dim the current button's color
+    //   setTimeout(function (button) {
+    //     button.dimColor();
+    //   }, 1500, button);
+    // }
 
     //  event.target).css("opacity", 4);
 

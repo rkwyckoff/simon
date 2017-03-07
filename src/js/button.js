@@ -32,10 +32,13 @@ class Button {
     var element = $(this.selector);
     element.css("opacity", .2);
   }
+
+
+  brightenColor2 (event) {
+
+  $(event.target).css("opacity", 4)
 }
-
-
-
+}
 
 /*
 
