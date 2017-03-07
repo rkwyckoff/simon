@@ -52,6 +52,7 @@ var buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
       button.dimColor();
     }, 1500, button);
   }
+
   startPlayerTurn();
   });
 
@@ -66,10 +67,17 @@ function startPlayerTurn() {
   console.log(pattern.steps)
 
   // listen for player color box clicks
-  $( ".colorBox" ).click(function(event) {
+  // $(".colorBox").click() {
+  //
+  //   console.log(event.target.id);
+  //   this.css("opacity", 4);
 
+    startPlayerTurn();
+  //});
     var idLength = event.target.id.length;
     var id = parseInt(event.target.id.charAt(idLength - 1));
+    $(".colorBox").click(
+      event.target).css("opacity", 4);
 
     if (id !== pattern.steps[clickNumber]) {
     //  gameOver();
@@ -87,11 +95,11 @@ function startPlayerTurn() {
         alert("You Win!");
         window.location.reload();
 
-        
+        pattern.buildSteps(4);
       }
     }
-  });
-}
+  };
+
 
 function startTimer() {
   var display = $("#time");
