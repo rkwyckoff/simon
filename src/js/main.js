@@ -3,68 +3,40 @@
 import $ from "jquery";
 import { Pattern } from "./pattern";
 import { Button } from "./button";
+import { Game } from "./game";
 
-// var difficulty = {
-//   easy: 500,
-//   medium: 400,
-//   hard: 300,
-//   nightmare: 200
-// }
+// TODO:
+// DID THIS!!!replace currentRound with pattern.steps because currentRound doesn't update automatically
+// DID THIS!!!!clear interval if you win so the timer doesn't keep going
+// set up your game object, to be able to go to the next level
+   // that's gonna mean everywhere you have a pattern, you need game.pattern
+
+// add a button to go to next level after you win
 
 // Create a new pattern
 var pattern = new Pattern();
-//var pattern2 = new Pattern();
-var currentRound = pattern.steps;
-//console.log(currentRound);
-
-// Create 5 buttons
-var redButton = new Button({ color: "red", id: 1 });
-var blackButton = new Button({ color: "black", id: 2 });
-var greenButton = new Button({ color: "green", id: 3 });
-var yellowButton = new Button({ color: "yellow", id: 4 });
-var blueButton = new Button({ color: "blue", id: 5 });
-
-// Create buttons array
-var buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
-
+var game = new Game(pattern);
 
 // Starts the game
   $('.startButton').click(function() {
 
-  // loop through each pattern step ====> 3 for now
-    for (var i = 0; i < currentRound.length; i++) {
+    for (var i = 0; i < game.pattern.steps.length; i++) {
+      var currentStep = game.pattern.steps[i];
+      var button = game.findButton(currentStep);
 
-    // set the current step
-      var currentStep = currentRound[i];
+      setTimeout(function (button) {
+        button.blink();
+      }, 400 * i, button);
+    }
 
-      // Find the button that matches this current step
-    var button = buttons.find(function (button) {
-      return button.id === currentStep;
-    });
-
-    // brighten the current button's color
-    setTimeout(function (button) {
-      button.brightenColor();
-    }, i * 400, button);
-
-    // dim the current button's color
-    setTimeout(function (button) {
-      button.dimColor();
-    }, 1500, button);
-  }
-
-  startPlayerTurn();
+    startPlayerTurn();
   });
 
 
 function startPlayerTurn() {
   // start the timer
   startTimer();
-
-  var clickNumber = 0;
-  var correctClicks = [];
-  var correctLength = pattern.steps.length;
-  console.log(pattern.steps)
+    //console.log(startTimer)
 
   // listen for player color box clicks
 
@@ -72,41 +44,28 @@ function startPlayerTurn() {
 
     var idLength = event.target.id.length;
     var id = parseInt(event.target.id.charAt(idLength - 1));
-    var button2 = new Button (event)
-    if (event) {
-      setTimeout(function () {
-      button2.brightenColor2(event)
-      });
 
-    }
-      // dim the current button's color
-    //   setTimeout(function (button) {
-    //     button.dimColor();
-    //   }, 1500, button);
-    // }
+    var button = game.findButton(id);
+    button.blink();
 
-    //  event.target).css("opacity", 4);
+    game.addClick(id);
 
-    if (id !== pattern.steps[clickNumber]) {
+    if (id !== game.pattern.steps[game.clickNumber]) {
       gameOver();
       alert('Game Over: faultyButton');
-      window.location.reload();
-
-
     }  else {
-      clickNumber++;
-      correctClicks.push(id);
+      game.clickNumber++;
+      game.correctClicks.push(id);
 
-      if (correctLength === correctClicks.length &&
-          pattern.steps[correctLength - 1] === id) {
+      if (game.correctClicks.length === game.pattern.steps.length) {
       //  gameOver();
         alert("You Win!");
-        window.location.reload();
-
-      //  pattern.buildSteps(4);
+        clearInterval(interval);
+        game.nextLevel ();
+      //pattern.buildSteps(4);
       }
     }
-});
+   });
 }
 
 function startTimer() {
@@ -119,7 +78,7 @@ function startTimer() {
     if (counter === 0) {
       alert(gameOver('outOfTime'));
       clearInterval(interval);
-      window.location.reload();
+      // window.location.reload();
 
     }
   }, 1000);
@@ -139,6 +98,11 @@ function startTimer() {
 function gameOver (type) {
   //var display = $("#time");
   //display.instructions();
+
+  // if (pattern.state === 'outoftime')
+  // $().html() ...
+  // if (pattern.state === 'bad-click')
+  // $("#game").html() ...
 
   if (type === "outOfTime") {
     return `
