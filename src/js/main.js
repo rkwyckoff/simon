@@ -36,12 +36,9 @@ function startPlayerTurn() {
     button.blink();
 
     if (id !== game.pattern.steps[game.clickNumber]) {
-
       game.resetTimer();
-      console.log(game.counter)
       $('.instructions').html(game.gameOver('wrongButton'));
-      game.display.html('Timer');
-
+      //return;
     }
 
     else {

@@ -8,6 +8,7 @@ var blackButton = new Button({ color: 'black', id: 2 });
 var greenButton = new Button({ color: 'green', id: 3 });
 var yellowButton = new Button({ color: 'yellow', id: 4 });
 var blueButton = new Button({ color: 'blue', id: 5 });
+var display = $('#time');
 
 class Game {
   constructor (pattern) {
@@ -16,7 +17,7 @@ class Game {
     this.correctClicks = [];
     this.clickNumber = 0;
     this.buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
-    this.counter = 6;
+
   }
 
   // addClick () {
@@ -59,20 +60,21 @@ class Game {
 
   startTimer() {
 
-    var display = $('#time');
-    //var counter = 6;
+
+    var counter = 6;
     var interval = setInterval(() => {
       this.counter--;
       display.html(this.counter);
 
-      if (this.counter === 0) {
+      if (this.counter === 0 )  {
         clearInterval(interval);
         $('.instructions').html(this.gameOver('timeOut'));
         display.html('Timer')
+        game.counter = this.counter
+        return;
 
 
       }
-
     }, 1000);
 
 
@@ -81,14 +83,18 @@ class Game {
 
 
   resetTimer() {
-    if (game.counter !== 0) {
-      clearInterval(this.interval);
-      game.counter = 6;
-    }
+    var interval = setInterval(() => {
+      clearInterval(interval);
 
+      display.html('Timer');
+
+
+    }, 0);
+    //game.counter = 6
   }
 
-  }
+}
+
   // nextLevel () {
   //   this.level++;
   //   this.buildSteps(this.level);
