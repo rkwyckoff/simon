@@ -38,7 +38,7 @@ function startPlayerTurn() {
     if (id !== game.pattern.steps[game.clickNumber]) {
       game.resetTimer();
       $('.instructions').html(game.gameOver('wrongButton'));
-      //return;
+      return;
     }
 
     else {

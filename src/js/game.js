@@ -8,7 +8,7 @@ var blackButton = new Button({ color: 'black', id: 2 });
 var greenButton = new Button({ color: 'green', id: 3 });
 var yellowButton = new Button({ color: 'yellow', id: 4 });
 var blueButton = new Button({ color: 'blue', id: 5 });
-var display = $('#time');
+
 
 class Game {
   constructor (pattern) {
@@ -60,17 +60,17 @@ class Game {
 
   startTimer() {
 
-
+    var display = $('#time');
     var counter = 6;
     var interval = setInterval(() => {
-      this.counter--;
-      display.html(this.counter);
+      counter--;
+      display.html(counter);
 
-      if (this.counter === 0 )  {
+      if (counter === 0 )  {
         clearInterval(interval);
         $('.instructions').html(this.gameOver('timeOut'));
         display.html('Timer')
-        game.counter = this.counter
+
         return;
 
 
@@ -86,11 +86,11 @@ class Game {
     var interval = setInterval(() => {
       clearInterval(interval);
 
-      display.html('Timer');
+      //game.display.html('Timer');
 
 
     }, 0);
-    //game.counter = 6
+    game.this.display.html('Timer');
   }
 
 }
