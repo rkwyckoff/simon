@@ -16,9 +16,7 @@ class Pattern {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
       };
-
       this.steps.push(num(1, 6));
-
     }
   }
 

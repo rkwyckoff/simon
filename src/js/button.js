@@ -12,12 +12,12 @@ class Button {
 
   blink () {
     this.brightenColor();
-    setTimeout(this.dimColor.bind(this), 400);
+    setTimeout(this.dimColor.bind(this), 800);
   }
 
   brightenColor () {
     var element = $(this.selector);
-    element.css("opacity", 4);
+    element.css("opacity", 25);
   }
 
   dimColor () {
@@ -25,11 +25,9 @@ class Button {
     element.css("opacity", .2);
   }
 
-
   brightenColor2 (event) {
-
-  $(event.target).css("opacity", 4)
-}
+    $(event.target).css("opacity", 4)
+  }
 }
 
 /*
