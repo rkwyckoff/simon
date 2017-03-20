@@ -1,14 +1,15 @@
-import { Game } from "./game";
-
-class Pattern {
+class Round {
   constructor (options) {
     options = options || {};
     this.id = options.id;
+    this.level = options.level || 3;
     this.playerClicks = [];
-    this.buildSteps(3);
+    this.steps = [];
+    this.makePattern(this.level);
   }
 
-  buildSteps (level) {
+  makePattern(level) {
+    this.level = level;
     this.steps = [];
     for (var i = 0; i < level; i++) {
       var num = function getRandomInt(min, max) {
@@ -20,7 +21,13 @@ class Pattern {
     }
   }
 
+  getSteps() {
+    return this.steps;
+  }
 
+  getLevel() {
+    return this.level;
+  }
 }
 
-export { Pattern };
+export { Round };
