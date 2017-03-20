@@ -25,9 +25,9 @@ class Button {
     element.css("opacity", .2);
   }
 
-  brightenColor2 (event) {
-    $(event.target).css("opacity", 4)
-  }
+  // brightenColor2 (event) {
+  //   $(event.target).css("opacity", 4)
+  // }
 }
 
 /*
