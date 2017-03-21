@@ -2,7 +2,6 @@ import $ from 'jquery';
 
 import { game } from './main';
 import { Button } from './button';
-import { Round } from './round';
 
 
 var redButton = new Button({ color: 'red', id: 1 });
@@ -12,15 +11,16 @@ var yellowButton = new Button({ color: 'yellow', id: 4 });
 var blueButton = new Button({ color: 'blue', id: 5 });
 var interval;
 var display = $('#time');
-var round = new Round();
+
 
 
 class Game {
-  constructor () {
+  constructor (round) {
     this.round = round;
     this.correctClicks = [];
     this.clickNumber = 0;
     this.buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
+
   }
 
   findButton (id) {
@@ -29,7 +29,34 @@ class Game {
     });
   }
 
+  startNewGame(event) {
+    console.log(game.round.steps)
+
+    for (var i = 0; i < game.round.steps.length; i++) {
+    var currentStep = game.round.steps[i];
+    var button = game.findButton(currentStep);
+
+    setTimeout(function (button) {
+    button.blink();
+    }, 400 * i, button);
+    }
+    game.startTimer();
+  }
+
+  processClick (event) {
+    var idLength = event.target.id.length;
+    //console.log(event.target.id)
+    var id = parseInt(event.target.id.charAt(idLength - 1));
+    var button = game.findButton(id);
+    button.blink();
+    game.processChoice(id);
+    //console.log(id)
+  }
+
   processChoice(id) {
+//console.log(this.round.steps[this.clickNumber])
+    //console.log(id);
+  //  console.log(game.round.steps[game.clickNumber])
     if (id !== game.round.steps[game.clickNumber]) {
       this.resetTimer();
       $('.instructions').html(this.gameOver('wrongButton'));
@@ -53,8 +80,8 @@ class Game {
   }
 
   nextLevel () {
-    let level = round.getLevel() + 1;
-    round.makePattern(level);
+    let level = this.round.getLevel() + 1;
+    this.round.makePattern(level);
   }
 
 
