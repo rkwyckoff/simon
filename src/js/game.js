@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
-import { game } from './main';
 import { Button } from './button';
+import { Round } from './round';
 
 
 var redButton = new Button({ color: 'red', id: 1 });
@@ -11,80 +11,44 @@ var yellowButton = new Button({ color: 'yellow', id: 4 });
 var blueButton = new Button({ color: 'blue', id: 5 });
 var interval;
 var display = $('#time');
-
+// var round = new Round
 
 
 class Game {
   constructor (round) {
     this.round = round;
-    this.correctClicks = [];
-    this.clickNumber = 0;
     this.buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
-
   }
 
   findButton (id) {
+  //  console.log (id)
     return this.buttons.find(function (button) {
+  //    console.log(button.id)
       return button.id === id;
+
     });
   }
 
   startNewGame(event) {
-    console.log(game.round.steps)
+    //console.log(this)
+  //  console.log(event)
+  //  var round = new Round()
+  //  var game = new Game(round);
 
-    for (var i = 0; i < game.round.steps.length; i++) {
-    var currentStep = game.round.steps[i];
-    var button = game.findButton(currentStep);
+    for (var i = 0; i < this.round.steps.length; i++) {
+console.log(this.round.steps)
+    var currentStep = this.round.steps[i];
 
-    setTimeout(function (button) {
-    button.blink();
-    }, 400 * i, button);
+    var button = this.findButton(currentStep);
+    //console.log(currentStep)
+    console.log(button)
+      setTimeout(function (button) {
+        button.blink();
+      }, 400 * i, button);
+
     }
-    game.startTimer();
+    this.startTimer();
   }
-
-  processClick (event) {
-    var idLength = event.target.id.length;
-    //console.log(event.target.id)
-    var id = parseInt(event.target.id.charAt(idLength - 1));
-    var button = game.findButton(id);
-    button.blink();
-    game.processChoice(id);
-    //console.log(id)
-  }
-
-  processChoice(id) {
-//console.log(this.round.steps[this.clickNumber])
-    //console.log(id);
-  //  console.log(game.round.steps[game.clickNumber])
-    if (id !== game.round.steps[game.clickNumber]) {
-      this.resetTimer();
-      $('.instructions').html(this.gameOver('wrongButton'));
-      setTimeout(() => {
-        $('.instructions').html(this.gameOver('instructions'));
-      }, 3000);
-    }
-    else {
-      game.clickNumber++;
-      game.correctClicks.push(id);
-
-      if (game.correctClicks.length === game.round.steps.length) {
-        $('.instructions').html(this.gameOver('win'));
-        this.resetTimer();
-        setTimeout(() => {
-          $('.instructions').html(this.gameOver('instructions'));
-        }, 3000);
-        this.nextLevel();
-      }
-    }
-  }
-
-  nextLevel () {
-    let level = this.round.getLevel() + 1;
-    this.round.makePattern(level);
-  }
-
-
   startTimer() {
     var counter = 6;
     interval = setInterval(() => {
@@ -99,6 +63,54 @@ class Game {
       }
     }, 1000);
   }
+
+  processClick (event) {
+    var idLength = event.target.id.length;
+    //console.log(event.target.id.length)
+    var id = parseInt(event.target.id.charAt(idLength - 1));
+  //  console.log(button)
+    var button = this.findButton(id);
+    //console.log(this.findButton(id))
+    button.blink();
+
+    this.processChoice(id);
+    //console.log(id)
+  }
+
+  processChoice(id) {
+//console.log(id)
+//console.log(this.round.steps[this.clickNumber])
+    //console.log(id);
+  //  console.log(this.round.steps[this.clickNumber])
+    if (id !== this.round.steps[this.clickNumber]) {
+    //  console.log(id)
+    //  console.log(this.round.steps[this.clickNumber])
+      this.resetTimer();
+      $('.instructions').html(this.gameOver('wrongButton'));
+      setTimeout(() => {
+        $('.instructions').html(this.gameOver('instructions'));
+      }, 3000);
+      //this.game = new Game();
+    }
+    else {
+      this.clickNumber++;
+      this.correctClicks.push(id);
+
+      if (this.correctClicks.length === this.round.steps.length) {
+        $('.instructions').html(this.gameOver('win'));
+        this.resetTimer();
+        setTimeout(() => {
+          $('.instructions').html(this.gameOver('instructions'));
+        }, 3000);
+        this.nextLevel();
+      }
+    }
+  }
+
+  nextLevel () {
+    this.round = new Round(this.round.getLevel() + 1);
+  }
+
 
   resetTimer() {
     clearInterval(interval);

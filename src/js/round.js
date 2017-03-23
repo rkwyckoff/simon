@@ -1,17 +1,22 @@
+import $ from "jquery";
+import { Game } from "./game";
+
+
 class Round {
-  constructor (options) {
-    options = options || {};
-    this.id = options.id;
-    this.level = options.level || 3;
+  constructor (level) {
+    this.level = level || 3;
     this.playerClicks = [];
+    this.clickNumber = 0;
     this.steps = [];
     this.makePattern(this.level);
+    // console.log(level)
   }
 
   makePattern(level) {
-    this.level = level;
-    this.steps = [];
+    //this.steps = [];
+   //console.log(level)
     for (var i = 0; i < level; i++) {
+    //  console.log("inside pattern")
       var num = function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
