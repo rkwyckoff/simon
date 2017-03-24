@@ -10,19 +10,3 @@ import { Round } from './round';
 $('.startButton').click(game.startNewGame.bind(game));
 
 $('.colorBox').click(game.processClick.bind(game));
-
-/*
-TODO
-
-Step 1: Fix any "game." in the code.
-        It should be this!
-
-Step 2: Modify playerClicks and clickNumber
-        in the Game's round (this.round),
-        not in the game itself.
-
-        Moving some of the processChoice work
-        into a method on the Round class might
-        be helpful.
-game.startNewGame.bind(game)
-*/

@@ -9,14 +9,10 @@ class Round {
     this.clickNumber = 0;
     this.steps = [];
     this.makePattern(this.level);
-    // console.log(level)
   }
 
   makePattern(level) {
-    //this.steps = [];
-   //console.log(level)
     for (var i = 0; i < level; i++) {
-    //  console.log("inside pattern")
       var num = function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);

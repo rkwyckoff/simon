@@ -29,8 +29,8 @@ class Game {
   }
 
   startNewGame(event) {
+    console.log(this.round.steps)
     for (var i = 0; i < this.round.steps.length; i++) {
-      console.log(this.round.steps)
       var currentStep = this.round.steps[i];
       var button = this.findButton(currentStep);
       setTimeout(function (button) {
@@ -61,7 +61,6 @@ class Game {
     var id = parseInt(event.target.id.charAt(idLength - 1));
 
     var button = this.findButton(id);
-    console.log(button)
     button.blink();
     this.processChoice(id);
   }
@@ -86,7 +85,7 @@ class Game {
         this.resetTimer();
         setTimeout(() => {
           $('.instructions').html(this.gameOver('instructions'));
-        }, 3000);
+        }, 2000);
         this.nextLevel();
       }
     }
