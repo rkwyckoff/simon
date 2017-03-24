@@ -30,7 +30,7 @@ class Game {
 
   startNewGame(event) {
     for (var i = 0; i < this.round.steps.length; i++) {
-console.log(this.round.steps)
+      console.log(this.round.steps)
       var currentStep = this.round.steps[i];
       var button = this.findButton(currentStep);
       setTimeout(function (button) {
@@ -49,6 +49,7 @@ console.log(this.round.steps)
         clearInterval(interval);
         $('.instructions').html(this.gameOver('timeOut'));
         display.html('Timer');
+        this.round.level = 0;
 
         return;
       }
@@ -58,16 +59,17 @@ console.log(this.round.steps)
   processClick (event) {
     var idLength = event.target.id.length;
     var id = parseInt(event.target.id.charAt(idLength - 1));
+
     var button = this.findButton(id);
-    //console.log(id)
+    console.log(button)
     button.blink();
-    processChoice(id);
+    this.processChoice(id);
   }
 
   processChoice(id) {
     // console.log(id)
     if (id !== this.round.steps[this.round.clickNumber]) {
-      console.log(this.round.steps[this.round.clickNumber])
+      //console.log(this.round.steps[this.round.clickNumber])
       this.resetTimer();
       $('.instructions').html(this.gameOver('wrongButton'));
       setTimeout(() => {
@@ -78,8 +80,7 @@ console.log(this.round.steps)
 
     else {
       this.round.clickNumber++;
-      this.correctClicks.push(this.id);
-
+      this.round.correctClicks.push(id);
       if (this.round.correctClicks.length === this.round.steps.length) {
         $('.instructions').html(this.gameOver('win'));
         this.resetTimer();

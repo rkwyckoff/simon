@@ -5,7 +5,7 @@ import { Game } from "./game";
 class Round {
   constructor (level) {
     this.level = level || 3;
-    this.playerClicks = [];
+    this.correctClicks = [];
     this.clickNumber = 0;
     this.steps = [];
     this.makePattern(this.level);

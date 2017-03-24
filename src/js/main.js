@@ -5,11 +5,11 @@ import { Game } from './game';
 import { Round } from './round';
 
  var round = new Round();
- var game = new Game();
+ var game = new Game(round);
 
 $('.startButton').click(game.startNewGame.bind(game));
 
-$('.colorBox').click(game.processClick);
+$('.colorBox').click(game.processClick.bind(game));
 
 /*
 TODO
