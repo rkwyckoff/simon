@@ -73,8 +73,8 @@ class Game {
       $('.instructions').html(this.gameOver('wrongButton'));
       setTimeout(() => {
         $('.instructions').html(this.gameOver('instructions'));
-      }, 3000);
-      //this.game = new Game();
+      }, 2000);
+
     }
 
     else {
@@ -103,7 +103,7 @@ class Game {
 
   gameOver (type) {
     if (type === 'win') {
-      return `YOU WIN! Click "Start" to play next level
+      return `WINNER! WINNER! Click "Start" to play next level
     `;
     }
 

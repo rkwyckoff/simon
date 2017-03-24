@@ -9,5 +9,6 @@ generate a sequence of lights flashing each round
 5)Created 5 second countdown timer for each round
 6)Used jquery click handlers to start game and register user clicks
 7)Made game object oriented, off-loading main.js to game, round, and button classes then tying back using "instantiation" via "this"
+8)Try your luck: this author achieved level 8!
 
 Play game at : tiy-kurt-simon.surge.sh
