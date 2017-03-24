@@ -5,7 +5,7 @@ import { Game } from './game';
 import { Round } from './round';
 
  var round = new Round();
- var game = new Game(round);
+ var game = new Game();
 
 $('.startButton').click(game.startNewGame.bind(game));
 
@@ -24,5 +24,5 @@ Step 2: Modify playerClicks and clickNumber
         Moving some of the processChoice work
         into a method on the Round class might
         be helpful.
-
+game.startNewGame.bind(game)
 */

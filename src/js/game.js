@@ -15,33 +15,24 @@ var display = $('#time');
 
 
 class Game {
-  constructor (round) {
+  constructor (round ){
     this.round = round;
     this.buttons = [redButton, blackButton, greenButton, yellowButton, blueButton];
+
   }
 
   findButton (id) {
-  //  console.log (id)
     return this.buttons.find(function (button) {
-  //    console.log(button.id)
+    //  console.log(button)
       return button.id === id;
-
     });
   }
 
   startNewGame(event) {
-    //console.log(this)
-  //  console.log(event)
-  //  var round = new Round()
-  //  var game = new Game(round);
-
     for (var i = 0; i < this.round.steps.length; i++) {
 console.log(this.round.steps)
-    var currentStep = this.round.steps[i];
-
-    var button = this.findButton(currentStep);
-    //console.log(currentStep)
-    console.log(button)
+      var currentStep = this.round.steps[i];
+      var button = this.findButton(currentStep);
       setTimeout(function (button) {
         button.blink();
       }, 400 * i, button);
@@ -66,25 +57,17 @@ console.log(this.round.steps)
 
   processClick (event) {
     var idLength = event.target.id.length;
-    //console.log(event.target.id.length)
     var id = parseInt(event.target.id.charAt(idLength - 1));
-  //  console.log(button)
     var button = this.findButton(id);
-    //console.log(this.findButton(id))
-    button.blink();
-
-    this.processChoice(id);
     //console.log(id)
+    button.blink();
+    processChoice(id);
   }
 
   processChoice(id) {
-//console.log(id)
-//console.log(this.round.steps[this.clickNumber])
-    //console.log(id);
-  //  console.log(this.round.steps[this.clickNumber])
-    if (id !== this.round.steps[this.clickNumber]) {
-    //  console.log(id)
-    //  console.log(this.round.steps[this.clickNumber])
+    // console.log(id)
+    if (id !== this.round.steps[this.round.clickNumber]) {
+      console.log(this.round.steps[this.round.clickNumber])
       this.resetTimer();
       $('.instructions').html(this.gameOver('wrongButton'));
       setTimeout(() => {
@@ -92,11 +75,12 @@ console.log(this.round.steps)
       }, 3000);
       //this.game = new Game();
     }
-    else {
-      this.clickNumber++;
-      this.correctClicks.push(id);
 
-      if (this.correctClicks.length === this.round.steps.length) {
+    else {
+      this.round.clickNumber++;
+      this.correctClicks.push(this.id);
+
+      if (this.round.correctClicks.length === this.round.steps.length) {
         $('.instructions').html(this.gameOver('win'));
         this.resetTimer();
         setTimeout(() => {
